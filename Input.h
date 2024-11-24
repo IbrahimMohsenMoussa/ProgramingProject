@@ -5,7 +5,7 @@
 #include "UI_Info.h" 
 #include "CMUgraphicsLib\CMUgraphics.h"
 #include "CellPosition.h"
-//this comment git test
+
 // forward declarations (their includes are in the cpp)
 class Output;  
 
