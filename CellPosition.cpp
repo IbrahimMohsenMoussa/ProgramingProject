@@ -26,7 +26,7 @@ CellPosition::CellPosition (int cellNum)
 												//                   to the data members (vCell and hCell)
 }
 
-bool CellPosition::SetVCell(int v)
+bool CellPosition::SetVCell(int v)	//DONE
 {
 	if (IsValidCell){
 		vCell = v;
@@ -34,26 +34,18 @@ bool CellPosition::SetVCell(int v)
 	}
 	return false;
 
-	///TODO: Implement this function as described in the .h file (don't forget the validation)
-
-	 // this line sould be changed with your implementation
-
-
-
 }
 
 	
 
 
-bool CellPosition::SetHCell(int h) 
+bool CellPosition::SetHCell(int h) 	//DONE
 {
 	if (IsValidCell) {
 		hCell = h;
 		return true;
 	}
 	return false;
-	///TODO: Implement this function as described in the .h file (don't forget the validation)
-	 // this line sould be changed with your implementation
 }
 
 int CellPosition::VCell() const 
@@ -66,16 +58,11 @@ int CellPosition::HCell() const
 	return hCell;
 }
 
-bool CellPosition::IsValidCell() const 
+bool CellPosition::IsValidCell() const	//DONE
 {
 	if (vCell >= 0 && vCell < NumVerticalCells && hCell >0 && hCell < NumHorizontalCells) {
 		return true;
 	} return false;
-
-
-
-	///TODO: Implement this function as described in the .h file
-	 // this line sould be changed with your implementation
 }
 
 int CellPosition::GetCellNum() const
@@ -84,7 +71,7 @@ int CellPosition::GetCellNum() const
 										  // which means the object of the current data members (vCell and hCell)
 }
 
-int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
+int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)	//DONE
 {
 	int CellNum;
 		
@@ -95,20 +82,11 @@ int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
 		CellNum = (NumVerticalCells - cellPosition.vCell - 1) * NumHorizontalCells + cellPosition.hCell + 1;
 	}
 
-
-	// Note:
-	// this is a static function (do NOT need a calling object so CANNOT use the data members of the calling object, vCell&hCell)
-	// just define an integer that represents cell number and calculate it using the passed cellPosition then return it
-
-	///TODO: Implement this function as described in the .h file
-
-	return CellNum; // this line should be changed with your implementation
+	return CellNum;
 }
 
-CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
+CellPosition CellPosition::GetCellPositionFromNum(int cellNum)	//DONE
 {
-	// this is a static function (do NOT need a calling object so CANNOT use the data members of the calling object, vCell&hCell)
-
 	CellPosition position;
 
 	if (cellNum < 1 || cellNum > NumVerticalCells * NumHorizontalCells) {
@@ -121,23 +99,40 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 
 	position.hCell = (cellNum - 1) % NumHorizontalCells;
 
-
-
-	/// TODO: Implement this function as described in the .h file
-
-	// Note: use the passed cellNum to set the vCell and hCell of the "position" variable declared inside the function
-	//       I mean: position.SetVCell(...) and position.SetHCell(...) then return it
-
-
 	return position;
 }
 
-void CellPosition::AddCellNum(int addedNum, Direction direction)
+void CellPosition::AddCellNum(int addedNum, Direction direction)	//DONE
 {
-	// will implement when home
-	/// TODO: Implement this function as described in the .h file
+	int cNum = GetCellNum();
 
 
-	// Note: this function updates the data members (vCell and hCell) of the calling object
+	switch (direction) {
+
+		case UP:
+			cNum += addedNum * NumHorizontalCells;
+			break;
+		case DOWN:
+			cNum -= addedNum * NumHorizontalCells;
+			break;
+		case RIGHT:
+			cNum += addedNum;
+			break;
+		case LEFT:
+			cNum -= addedNum;
+			break;
+	}
+
+	if (cNum < 1) {
+		cNum = 1;
+	}
+	else if (cNum > NumVerticalCells * NumHorizontalCells) {
+		cNum = NumVerticalCells * NumHorizontalCells;
+	}
+
+
+	*this = GetCellPositionFromNum(cNum); //to directly update the data members
+
+
 
 }
