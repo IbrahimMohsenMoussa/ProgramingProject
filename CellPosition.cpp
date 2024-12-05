@@ -28,7 +28,7 @@ CellPosition::CellPosition (int cellNum)
 
 bool CellPosition::SetVCell(int v)	//DONE
 {
-	if (IsValidCell){
+	if (IsValidCell()){
 		vCell = v;
 		return true;
 	}
@@ -41,7 +41,7 @@ bool CellPosition::SetVCell(int v)	//DONE
 
 bool CellPosition::SetHCell(int h) 	//DONE
 {
-	if (IsValidCell) {
+	if (IsValidCell()) {
 		hCell = h;
 		return true;
 	}
