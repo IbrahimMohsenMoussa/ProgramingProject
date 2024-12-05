@@ -45,17 +45,20 @@ enum DESIGN_MODE_ITEMS // The items of the Design Mode (you should add more item
 
 enum PLAY_MODE_ITEMS // The items of the Play Mode (you should add more items)
 {
-	// Note: Items are ordered here as they appear in menu
-	// If you want to change the menu items order, change the order here
+    // Note: Items are ordered here as they appear in the menu
+    // If you want to change the menu items order, change the order here
 
-	ITM_EXECUTE_COMMANDS,
-	ITM_SELECT_COMMAND,
-	ITM_SWITCH_TO_DESIGN_MODE,
+    ITM_EXECUTE_COMMANDS,   // Execute saved movement commands
+    ITM_SELECT_COMMAND,     // Select a movement command
+    ITM_USE_CONSUMABLE,     // Use a consumable item 
+    ITM_REBOOT_REPAIR,      // Reboot and repair the robot
+    ITM_NEW_GAME,           // Start a new game
+    ITM_SWITCH_TO_DESIGN_MODE, // Switch to Design Mode
+    ITM_EXIT_PLAY_MODE,     // Exit the application
 
-	///TODO: Add more items names here
-
-	PLAY_ITM_COUNT		// no. of items ==> This should be the last line in this enum
+    PLAY_ITM_COUNT          // No. of items ==> This should be the last line in this enum
 };
+
 
 
 __declspec(selectany) // This line to prevent "redefinition error"

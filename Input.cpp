@@ -45,7 +45,7 @@ string Input::GetSrting(Output *pO) const
 int Input::GetInteger(Output *pO) const
 {
 
-	/// TODO: implement the GetInteger function as described in Input.h file
+	/// DONE: implement the GetInteger function as described in Input.h file
 	//       using function GetString() defined above and function stoi()
 
 	string l_string = GetSrting(pO);
@@ -60,60 +60,151 @@ int Input::GetInteger(Output *pO) const
 //								Game  Functions									        //
 //======================================================================================//
 
+// ActionType Input::GetUserAction() const
+// {
+// 	int x = -1, y = -1;
+// 	GetPointClicked(x, y);
+
+// 	//  ============ GUI in the Design mode ============
+// 	if (UI.InterfaceMode == MODE_DESIGN)
+// 	{
+// 		// [1] If user clicks on the Toolbar
+// 		if (y >= 0 && y < UI.ToolBarHeight)
+// 		{
+// 			// Check which Menu item was clicked
+// 			// ==> This assumes that menu items are lined up horizontally <==
+
+// 			int clickedItemOrder = (x / UI.MenuItemWidth);
+
+// 			// Divide x coord of the point clicked by the menu item width (integer division)
+// 			// If division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+
+// 			switch (clickedItemOrder)
+// 			{
+// 			case ITM_SET_FLAG_CELL:
+// 				return SET_FLAG_CELL;
+// 			case ITM_EXIT:
+// 				return EXIT;
+// 			case ITM_SWITCH_TO_PLAY_MODE:
+// 				return TO_PLAY_MODE;
+
+// 				/// TODO: Add cases for the other items of Design Mode
+
+// 			default:
+// 				return EMPTY; // A click on empty place in toolbar
+// 			}
+// 		}
+
+// 		// [2] User clicks on the grid area
+// 		if ((y >= UI.ToolBarHeight) && (y < UI.height - UI.StatusBarHeight))
+// 		{
+// 			return GRID_AREA;
+// 		}
+
+// 		// [3] User clicks on the status bar
+// 		return STATUS;
+// 	}
+
+// 	// ============ GUI in the Play mode ============
+// 	else
+// 	{
+// 		/// TODO:
+// 		// perform checks similar to Design mode checks above for the Play Mode
+// 		// and return the corresponding ActionType
+
+// 		return TO_DESIGN_MODE; // just for now ==> This should be updated
+// 	}
+// }
+
 ActionType Input::GetUserAction() const
 {
 	int x = -1, y = -1;
 	GetPointClicked(x, y);
 
-	//  ============ GUI in the Design mode ============
 	if (UI.InterfaceMode == MODE_DESIGN)
 	{
-		// [1] If user clicks on the Toolbar
+		// [1] Toolbar clicks
 		if (y >= 0 && y < UI.ToolBarHeight)
 		{
-			// Check which Menu item was clicked
-			// ==> This assumes that menu items are lined up horizontally <==
-
 			int clickedItemOrder = (x / UI.MenuItemWidth);
-
-			// Divide x coord of the point clicked by the menu item width (integer division)
-			// If division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
-
 			switch (clickedItemOrder)
 			{
 			case ITM_SET_FLAG_CELL:
 				return SET_FLAG_CELL;
-			case ITM_EXIT:
-				return EXIT;
+			case ITM_ADD_ANTENNA:
+				return ADD_ANTENNA;
+			case ITM_ADD_BELT:
+				return ADD_BELT;
+			case ITM_ADD_WATER_PIT:
+				return ADD_WATER_PIT;
+			case ITM_ADD_DANGER_ZONE:
+				return ADD_DANGER_ZONE;
+			case ITM_ADD_WORKSHOP:
+				return ADD_WORKSHOP;
+			case ITM_COPY:
+				return COPY;
+			case ITM_CUT:
+				return CUT;
+			case ITM_PASTE:
+				return PASTE;
+			case ITM_DELETE:
+				return DEL;
+			case ITM_SAVE_GRID:
+				return SAVE_GRID;
+			case ITM_LOAD_GRID:
+				return LOAD_GRID;
 			case ITM_SWITCH_TO_PLAY_MODE:
 				return TO_PLAY_MODE;
-
-				/// TODO: Add cases for the other items of Design Mode
-
+			case ITM_EXIT:
+				return EXIT;
 			default:
-				return EMPTY; // A click on empty place in toolbar
+				return EMPTY;
 			}
 		}
 
-		// [2] User clicks on the grid area
-		if ((y >= UI.ToolBarHeight) && (y < UI.height - UI.StatusBarHeight))
-		{
+		// [2] Grid area clicks
+		if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
 			return GRID_AREA;
+
+		// [3] Status bar clicks
+		return STATUS;
+	}
+	else if (UI.InterfaceMode == MODE_PLAY)
+	{
+		// [1] Toolbar clicks in Play Mode
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			int clickedItemOrder = (x / UI.MenuItemWidth);
+			switch (clickedItemOrder)
+			{
+			case ITM_SELECT_COMMAND:
+				return SELECT_COMMAND;
+			case ITM_EXECUTE_COMMANDS:
+				return EXECUTE_COMMANDS;
+			case ITM_SWITCH_TO_DESIGN_MODE:
+				return TO_DESIGN_MODE;
+			case ITM_EXIT_PLAY_MODE:
+				return EXIT;
+			case ITM_REBOOT_REPAIR:
+				return REBOOT_REPAIR;
+			case ITM_NEW_GAME:
+				return NEW_GAME;
+			case ITM_USE_CONSUMABLE:
+				return USE_CONSUMABLE;
+			default:
+				return EMPTY;
+			}
 		}
 
-		// [3] User clicks on the status bar
+		// [2] Grid area clicks
+		if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
+			return GRID_AREA;
+
+		// [3] Status bar clicks
 		return STATUS;
 	}
 
-	// ============ GUI in the Play mode ============
-	else
-	{
-		/// TODO:
-		// perform checks similar to Design mode checks above for the Play Mode
-		// and return the corresponding ActionType
-
-		return TO_DESIGN_MODE; // just for now ==> This should be updated
-	}
+	return EMPTY; // Default return for undefined behavior
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
