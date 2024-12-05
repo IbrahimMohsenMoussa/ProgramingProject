@@ -22,11 +22,22 @@ enum DESIGN_MODE_ITEMS // The items of the Design Mode (you should add more item
 {
 	// Note: Items MUST be ordered here as they appear in menu
 	// If you want to change the menu items order, change the order here
-
-	ITM_SET_FLAG_CELL,
 	ITM_EXIT,
 	ITM_SWITCH_TO_PLAY_MODE,
+	ITM_SET_FLAG_CELL,
 	
+
+	ITM_ADD_ANTENNA,
+	ITM_ADD_BELT,
+	ITM_ADD_WATER_PIT,
+	ITM_ADD_DANGER_ZONE,
+	ITM_ADD_WORKSHOP,
+	ITM_COPY,
+	ITM_CUT,
+	ITM_PASTE,
+	ITM_DELETE,
+	ITM_SAVE_GRID,
+	ITM_LOAD_GRID,
 	///TODO: Add more items names here
 
 	DESIGN_ITM_COUNT	// no. of items ==> This should be the last line in this enum

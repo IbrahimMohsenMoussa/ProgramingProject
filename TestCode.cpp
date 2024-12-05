@@ -5,15 +5,15 @@
 //ghkjfjg
 int main()
 {
-	int x,y;
+	int x, y;
 
 	//Create Input and Output objects to test
-	Output * pOut = new Output();
-	Input * pIn = pOut->CreateInput();
+	Output* pOut = new Output();
+	Input* pIn = pOut->CreateInput();
 
 	//Starting the test
 	pOut->PrintMessage("This demo is to test classes of phase 1, Click anywhere to start the test");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 
 	///////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +24,7 @@ int main()
 	///////////////////////////////////////////////////////////////////////////////////
 
 	pOut->PrintMessage("TEST1: Drawing Tool bar, Grid, Status bar and Empty Command bar, Click anywhere to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 
 	// 1.1- Drawing the Command bar in the Game mode
@@ -45,7 +45,7 @@ int main()
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	///TODO: Draw the command bar with only 4 available commands and 4 empty slots for saved commands
-	
+
 
 	pOut->PrintMessage("1.1.2- Finished Testing the Command bar in the Game mode, Click to continue");
 
@@ -56,7 +56,7 @@ int main()
 	/// 	but the first saved command will be MOVE_FORWARD_ONE_STEP
 	///		and the first available command will be NO_COMMAND
 
-	
+
 	pOut->PrintMessage("1.1.3- Finished Testing the Command bar in the Game mode, Click to continue");
 
 	pOut->PrintMessage("1.1.4- Testing the Command bar in the Game mode, Click to continue");
@@ -65,7 +65,7 @@ int main()
 	///TODO: Draw the command bar with 5 saved commands and 6 available commands,
 	/// 	but the first saved command will be MOVE_FORWARD_TWO_STEPS
 	///		and the first available command will be NO_COMMAND as previous test
-	
+
 
 	pOut->PrintMessage("1.1.4- Finished Testing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -77,7 +77,7 @@ int main()
 	///////////////////////////////////////////////////////////////////////////////////
 
 	pOut->PrintMessage("TEST2: Testing the [ Output ] class, Click anywhere to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	// 2.1- Drawing Water Pits Cells //
 	// =============================
@@ -90,7 +90,7 @@ int main()
 	CellPosition cell_1(1);		// cell num 1
 
 	// TODO: Draw Water Pits in cell_10 and cell_53 and cell_1 (Invalid)
-	
+
 
 	pOut->PrintMessage("FINISHED - Drawing (Water Pits) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -105,12 +105,12 @@ int main()
 	CellPosition cell_60(60);	// cell num 60
 
 	// TODO: Draw DangerZone in cell_20, [cell_60 and cell_1] (Invalid)
-	
+
 
 	pOut->PrintMessage("FINISHED - Drawing (DangerZone) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
-	
+
 	// 2.3- Drawing Players Test //
 	// =========================
 	pOut->PrintMessage("2.3- Drawing (Players) Test,  Click to continue");
@@ -141,7 +141,7 @@ int main()
 	///       playerNum (-1) with color (PlayerColors[1] defined in UI object) 
 	///			in cell position (player_99 declared above) pointing left--> Invalid
 
-	
+
 	pOut->PrintMessage("FINISHED - Drawing (Players) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
@@ -189,7 +189,7 @@ int main()
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
 
-	
+
 
 	// 2.6- Drawing Rotating Gears //
 	// ===========================
@@ -213,7 +213,7 @@ int main()
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	CellPosition cell_25(25);
-	
+
 	// TODO: Draw Antenna in cell position (cell_25)
 
 	pOut->PrintMessage("FINISHED - Drawing (Antenna) Test,  Click to continue");
@@ -228,7 +228,7 @@ int main()
 	CellPosition cell_30(30);
 
 	// TODO: Draw Workshop in cell position (cell_30)
-	
+
 	pOut->PrintMessage("FINISHED - Drawing (Workshop) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
@@ -241,12 +241,12 @@ int main()
 	///////////////////////////////////////////////////////////////////////////////////
 
 	pOut->PrintMessage("TEST3: Now Time to test class [ Input ], Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	/// 3.1- Getting Integer ///
 	/// ===========================
 	pOut->PrintMessage("3.1- (GetInteger) Test, Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 
 	///TODO: Add code here to 
@@ -258,12 +258,12 @@ int main()
 
 
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	/// 3.2- Getting Cell Clicked ///
 	/// =========================
 	pOut->PrintMessage("3.2- (GetCellClicked) Test, Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 
 	///TODO: Add code here to 
@@ -273,13 +273,13 @@ int main()
 
 
 	pOut->PrintMessage("FINISHED - (GetCellClicked) Test, Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 
 	/// 3.3- Reading a String ///
 	/// =====================
 	pOut->PrintMessage("3.3- (GetSrting) Test, Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 
 	///TODO: Add code here to 
@@ -291,7 +291,7 @@ int main()
 
 
 	pOut->PrintMessage("FINISHED - (GetSrting) Test, Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 4:	
@@ -299,10 +299,10 @@ int main()
 	///////////////////////////////////////////////////////////////////////////////////
 
 	pOut->PrintMessage("TEST4: Testing the [ CellPosition ] class, Click anywhere to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	pOut->PrintMessage("4.1- (Setters with Validation) Test, Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	CellPosition cellpos_1(0, 0);
 
@@ -315,10 +315,10 @@ int main()
 	// 6- Repeat all the above steps to test SetHCell() function instead with the needed modifications
 
 	pOut->PrintMessage("FINISHED - (Setters with Validation) Test, Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	pOut->PrintMessage("4.2- (GetCellNumFromPosition) Test, Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	/// TODO:
 	// 1- Read from user two integers representing vCell and hCell
@@ -328,10 +328,10 @@ int main()
 	// 5- Repeat the above steps Five TIMES
 
 	pOut->PrintMessage("FINISHED - (GetCellNumFromPosition) Test, Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	pOut->PrintMessage("4.3- (GetCellPositionFromNum) Test, Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	/// TODO:
 	// 1- Read from user one integer representing cellNum
@@ -341,7 +341,7 @@ int main()
 	// 4- Print the Cell vCell and hCell on the status bar
 	// 5- Repeat the above steps Five TIMES
 	pOut->PrintMessage("FINISHED - (GetCellPositionFromNum) Test, Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	pOut->PrintMessage("4.4- (AddCellNum) Test, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -375,63 +375,61 @@ int main()
 		int clickedCommandItemIndex; // if the action is SELECT_COMMAND, this will have the icon index
 		switch (ActType)
 		{
-			case SET_FLAG_CELL:
-				pOut->PrintMessage("Action: SET_FLAG_CELL , Click anywhere");
-				break;
-		
-
-			case EXIT:				
-				break;
-
-			case TO_PLAY_MODE:
-
-				pOut->PrintMessage("Action: TO_PLAY_MODE , Click anywhere");
-				pOut->CreatePlayModeToolBar();
-
-				///TODO:  Call Function (PrintPlayersInfo) of Class Output with a string similar to 
-				//        the one given in the screenshot of project document 
-
-				break;
+		case SET_FLAG_CELL:
+			pOut->PrintMessage("Action: SET_FLAG_CELL , Click anywhere");
+			break;
 
 
-				///TODO:  ADD Cases similarly for ALL the remaining actions of DESIGN Mode
+		case EXIT:
+			break;
 
-			case EXECUTE_COMMANDS:
-				pOut->PrintMessage("Action: EXECUTE_COMMAND , Click anywhere");
-				break;
-			case SELECT_COMMAND:
-				pOut->PrintMessage("Action: SELECT_COMMAND , Select a command");
-				clickedCommandItemIndex = pIn->GetSelectedCommandIndex();
-				pOut->PrintMessage("Action: SELECT_COMMAND " + to_string(clickedCommandItemIndex) + " , Click anywhere");
-				break;
+		case TO_PLAY_MODE:
 
-			case GRID_AREA:
-				pOut->PrintMessage("Action: GRID_AREA , Click anywhere");
-				break;
+			pOut->PrintMessage("Action: TO_PLAY_MODE , Click anywhere");
+			pOut->CreatePlayModeToolBar();
 
-			case STATUS:
-				pOut->PrintMessage("Action: STATUS , Click anywhere");
-				break;
+			///TODO:  Call Function (PrintPlayersInfo) of Class Output with a string similar to 
+			//        the one given in the screenshot of project document 
 
-			case TO_DESIGN_MODE:
-				pOut->PrintMessage("Action: TO_DESIGN_MODE , Click anywhere");
-				pOut->CreateDesignModeToolBar();
-				break;
+			break;
 
-				///TODO:  ADD Cases similarly for ALL the remaining actions of PLAY Mode
+
+			///TODO:  ADD Cases similarly for ALL the remaining actions of DESIGN Mode
+
+		case EXECUTE_COMMANDS:
+			pOut->PrintMessage("Action: EXECUTE_COMMAND , Click anywhere");
+			break;
+		case SELECT_COMMAND:
+			pOut->PrintMessage("Action: SELECT_COMMAND , Select a command");
+			clickedCommandItemIndex = pIn->GetSelectedCommandIndex();
+			pOut->PrintMessage("Action: SELECT_COMMAND " + to_string(clickedCommandItemIndex) + " , Click anywhere");
+			break;
+
+		case GRID_AREA:
+			pOut->PrintMessage("Action: GRID_AREA , Click anywhere");
+			break;
+
+		case STATUS:
+			pOut->PrintMessage("Action: STATUS , Click anywhere");
+			break;
+
+		case TO_DESIGN_MODE:
+			pOut->PrintMessage("Action: TO_DESIGN_MODE , Click anywhere");
+			pOut->CreateDesignModeToolBar();
+			break;
+
+			///TODO:  ADD Cases similarly for ALL the remaining actions of PLAY Mode
 
 		}
-	}while(ActType != EXIT);
+	} while (ActType != EXIT);
 
 
 	/// Exiting
 	pOut->PrintMessage("Action: EXIT, test is finished, click anywhere to exit");
-	pIn->GetPointClicked(x,y);
+	pIn->GetPointClicked(x, y);
 
 
 	delete pIn;
-	delete pOut;	
+	delete pOut;
 	return 0;
 }
-
-
