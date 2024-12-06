@@ -319,7 +319,7 @@ void Output::CreateDesignModeToolBar() const
 // }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-
+#if 0
 void Output::CreatePlayModeToolBar() const
 {
 	UI.InterfaceMode = MODE_PLAY;
@@ -346,6 +346,32 @@ void Output::CreatePlayModeToolBar() const
 	for (int i = 0; i < PLAY_ITM_COUNT; i++)
 		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
 }
+#endif
+
+void Output::CreatePlayModeToolBar() const
+{
+    UI.InterfaceMode = MODE_PLAY;
+
+    ClearToolBar(); // Clear existing toolbar to prevent overlapping icons
+
+    // Prepare the list of images for each menu item
+    string MenuItemImages[PLAY_ITM_COUNT];
+
+    // Map each PLAY_MODE_ITEM to an image path
+    MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\Menu_SwitchToGrid.jpg";
+    MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Menu_ExecuteCommands.jpg";
+    MenuItemImages[ITM_SELECT_COMMAND] = "images\\Menu_SelectCommand.jpg";
+    MenuItemImages[ITM_NEW_GAME] = "images\\Menu_NewGame.jpg";
+    MenuItemImages[ITM_USE_CONSUMABLE] = "images\\Menu_UseConsumable.jpg";
+    MenuItemImages[ITM_REBOOT_REPAIR] = "images\\Menu_RebootRepair.jpg";
+    MenuItemImages[ITM_EXIT_PLAY_MODE] = "images\\Menu_Exit.jpg";
+
+    
+    for (int i = 0; i < PLAY_ITM_COUNT; i++)
+    {
+        pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+    }
+}
 
 void Output::CreateCommandsBar(Command savedCommands[], int savedCommandsCount, Command availableCommands[], int availableCommandsCount) const
 {
@@ -354,7 +380,7 @@ void Output::CreateCommandsBar(Command savedCommands[], int savedCommandsCount, 
 	string CommandItemImages[COMMANDS_COUNT];
 	CommandItemImages[NO_COMMAND] = "images\\CommandSlot-grey.jpg";
 	CommandItemImages[MOVE_FORWARD_ONE_STEP] = "images\\MoveForwardCard.jpg";
-	// TODO: Prepare images for more items with .jpg extensions and add them to the list
+	/// TODO: Prepare images for more items with .jpg extensions and add them to the list
 
 	DrawSavedCommands(savedCommands, savedCommandsCount, CommandItemImages);
 	DrawAvailableCommands(availableCommands, availableCommandsCount, CommandItemImages);
