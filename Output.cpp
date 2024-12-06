@@ -156,7 +156,7 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 	int x1, y1, x2, y2, x3, y3;
 
 	/// Calculate the coordiantes of the 3 vertices of the triangle based on the passed parameters
-	/// DONE:BUT UNTESTED
+	/// DONE
 
 	switch (direction)
 	{
@@ -170,9 +170,9 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 		break;
 	case DOWN:
 		x1 = triangleCenterX - triangleWidth / 2;
-		y1 = triangleCenterY + triangleHeight / 2;
+		y1 = triangleCenterY - triangleHeight / 2;
 		x2 = triangleCenterX + triangleWidth / 2;
-		y2 = triangleCenterY + triangleHeight / 2;
+		y2 = triangleCenterY - triangleHeight / 2;
 		x3 = triangleCenterX;
 		y3 = triangleCenterY + triangleHeight / 2;
 		break;
@@ -190,8 +190,8 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 
 		y1 = triangleCenterY - triangleHeight / 2;
 		y2 = triangleCenterY + triangleHeight / 2;
-		x1 = triangleCenterX + triangleWidth / 2;
-		x2 = triangleCenterX + triangleWidth / 2;
+		x1 = triangleCenterX - triangleWidth / 2;
+		x2 = triangleCenterX - triangleWidth / 2;
 		x3 = triangleCenterX + triangleWidth / 2;
 		y3 = triangleCenterY;
 
@@ -382,6 +382,7 @@ void Output::CreateCommandsBar(Command savedCommands[], int savedCommandsCount, 
     string CommandItemImages[COMMANDS_COUNT];
     CommandItemImages[NO_COMMAND] = "images\\CommandSlot-grey.jpg";
     CommandItemImages[MOVE_FORWARD_ONE_STEP] = "images\\MoveForwardCard.jpg";
+	CommandItemImages[MOVE_FORWARD_TWO_STEPS] = "images\\MoveForwardTwice.jpg";
     CommandItemImages[MOVE_BACKWARD_ONE_STEP] = "images\\MoveBackwardCard.jpg";
     CommandItemImages[ROTATE_LEFT] = "images\\RotateLeftCard.jpg";
     CommandItemImages[ROTATE_RIGHT] = "images\\RotateRightCard.jpg";
@@ -601,7 +602,7 @@ void Output::DrawBelt(const CellPosition &fromCellPos, const CellPosition &toCel
 	int beltFromCellY = fromCellStartY + UI.BeltYOffset;
 	int beltToCellY = toCellStartY + UI.BeltYOffset;
 
-	// Set pen color and width using the UI_Info object parameters
+	// Set pen color and width
 	pWind->SetPen(UI.BeltColor, UI.BeltLineWidth);
 
 	// Draw the belt line
@@ -627,7 +628,7 @@ void Output::DrawBelt(const CellPosition &fromCellPos, const CellPosition &toCel
 	int triangleHeight = UI.CellHeight / 4;
 
 	// Draw the direction triangle at the center of the belt line
-	DrawTriangle(l_centerX, l_centerY, triangleHeight, triangleWidth, l_TriDirection, UI.BeltColor, FILLED, 1);
+	DrawTriangle(l_centerX, l_centerY, triangleHeight, triangleWidth, l_TriDirection, UI.BeltColor,FILLED, 1);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -732,6 +733,9 @@ void Output::DrawWorkshop(const CellPosition &cellPos) const
 void Output::DrawDangerZone(const CellPosition &cellPos) const
 {
 	VALIDATE_CELL(cellPos);
+	if (cellPos.GetCellNum() == 1) {
+		return;
+	}
 
 	/// TODO: Complete the implementation of the following function
 
@@ -747,6 +751,10 @@ void Output::DrawDangerZone(const CellPosition &cellPos) const
 void Output::DrawWaterPit(const CellPosition &cellPos) const
 {
 	VALIDATE_CELL(cellPos);
+	if (cellPos.GetCellNum() == 1) {
+		return;
+	}
+
 	// TODO: Draw the workshop image in the cell
 	int Width = UI.CellWidth / 2;	// Scaled to half the cell's width
 	int Height = UI.CellHeight / 2; // Scaled to half the cell's height
