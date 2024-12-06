@@ -1,6 +1,6 @@
 #include "Input.h"
 #include "Output.h"
-// Fuck elbana
+
 //This is a test code to test the Input and Output classes
 //ghkjfjg
 int main()
