@@ -4,8 +4,8 @@
 
 #include <iostream>
 //////////////////////////////////////////////////////////////////////////////////////////
-//Macro To Validate Cell Position 
-#define VALIDATE_CELL(CELL)           \
+// Macro To Validate Cell Position
+#define VALIDATE_CELL(CELL)    \
 	if (!CELL##.IsValidCell()) \
 	return
 
@@ -374,16 +374,28 @@ void Output::CreatePlayModeToolBar() const
 
 void Output::CreateCommandsBar(Command savedCommands[], int savedCommandsCount, Command availableCommands[], int availableCommandsCount) const
 {
-	ClearCommandsBar();
-	UI.InterfaceMode = MODE_PLAY;
-	string CommandItemImages[COMMANDS_COUNT];
-	CommandItemImages[NO_COMMAND] = "images\\CommandSlot-grey.jpg";
-	CommandItemImages[MOVE_FORWARD_ONE_STEP] = "images\\MoveForwardCard.jpg";
-	/// TODO: Prepare images for more items with .jpg extensions and add them to the list
+    // Clear the commands bar area
+    ClearCommandsBar();
+    UI.InterfaceMode = MODE_PLAY;
 
-	DrawSavedCommands(savedCommands, savedCommandsCount, CommandItemImages);
-	DrawAvailableCommands(availableCommands, availableCommandsCount, CommandItemImages);
+    // Prepare images for all possible commands
+    string CommandItemImages[COMMANDS_COUNT];
+    CommandItemImages[NO_COMMAND] = "images\\CommandSlot-grey.jpg";
+    CommandItemImages[MOVE_FORWARD_ONE_STEP] = "images\\MoveForwardCard.jpg";
+    CommandItemImages[MOVE_BACKWARD_ONE_STEP] = "images\\MoveBackwardCard.jpg";
+    CommandItemImages[ROTATE_LEFT] = "images\\RotateLeftCard.jpg";
+    CommandItemImages[ROTATE_RIGHT] = "images\\RotateRightCard.jpg";
+    CommandItemImages[USE_TOOLKIT] = "images\\ToolkitCard.jpg";
+    CommandItemImages[USE_HACK_DEVICE] = "images\\HackDeviceCard.jpg";
+    // Add more commands as needed with proper image file paths
+
+    // Draw saved commands in the saved commands area
+    DrawSavedCommands(savedCommands, savedCommandsCount, CommandItemImages);
+
+    // Draw available commands in the available commands area
+    DrawAvailableCommands(availableCommands, availableCommandsCount, CommandItemImages);
 }
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -536,7 +548,7 @@ void Output::DrawPlayer(const CellPosition &cellPos, int playerNum, color player
 {
 	/// TODO: Validate the cell position and the playerNum, if not valid return
 	VALIDATE_CELL(cellPos);
-	if ( playerNum < 0 || playerNum > 1)
+	if (playerNum < 0 || playerNum > 1)
 		return;
 
 	// Get the X & Y coordinates of the start point of the cell (its upper left corner)
@@ -679,26 +691,30 @@ void Output::DrawFlag(const CellPosition &cellPos) const
 
 void Output::DrawRotatingGear(const CellPosition &cellPos, bool clockwise) const
 {
-    // Validate the cell position using the macro
-    VALIDATE_CELL(cellPos);
+	// Validate the cell position using the macro
+	VALIDATE_CELL(cellPos);
 
-    // Choose the appropriate image based on the gear's direction
-    string gearImage = clockwise ? "images\\Gear_Clockwise.jpg" : "images\\Gear_CounterClockwise.jpg";
+	// Choose the appropriate image based on the gear's direction
+	string gearImage = clockwise ? "images\\Gear_Clockwise.jpg" : "images\\Gear_CounterClockwise.jpg";
 
-    // Define the width and height of the gear image relative to the cell size
-    int gearWidth = UI.CellWidth / 2;  // Scaled to half the cell's width
-    int gearHeight = UI.CellHeight / 2; // Scaled to half the cell's height
+	// Define the width and height of the gear image relative to the cell size
+	int gearWidth = UI.CellWidth / 2;	// Scaled to half the cell's width
+	int gearHeight = UI.CellHeight / 2; // Scaled to half the cell's height
 
-    // Use DrawImageInCell to place the gear in the specified cell
-    DrawImageInCell(cellPos, gearImage, gearWidth, gearHeight);
+	// Use DrawImageInCell to place the gear in the specified cell
+	DrawImageInCell(cellPos, gearImage, gearWidth, gearHeight);
 }
-
 
 void Output::DrawAntenna(const CellPosition &cellPos) const
 {
-	// TODO: Validate the cell position
+	/// TODO: Validate the cell position
 	VALIDATE_CELL(cellPos);
-	// TODO: Draw the antenna image in the cell
+	int Width = UI.CellWidth / 2;	// Scaled to half the cell's width
+	int Height = UI.CellHeight / 2; // Scaled to half the cell's height
+
+	// Use DrawImageInCell to place the gear in the specified cell
+	DrawImageInCell(cellPos, "images\\Menu_AddAntenna.jpg", Width, Height);
+	/// TODO: Draw the antenna image in the cell
 }
 
 void Output::DrawWorkshop(const CellPosition &cellPos) const
@@ -706,18 +722,37 @@ void Output::DrawWorkshop(const CellPosition &cellPos) const
 	// TODO: Validate the cell position
 	VALIDATE_CELL(cellPos);
 	// TODO: Draw the workshop image in the cell
+	int Width = UI.CellWidth / 2;	// Scaled to half the cell's width
+	int Height = UI.CellHeight / 2; // Scaled to half the cell's height
+
+	// Use DrawImageInCell to place the gear in the specified cell
+	DrawImageInCell(cellPos, "images\\Workshop.jpg", Width, Height);
 }
 
 void Output::DrawDangerZone(const CellPosition &cellPos) const
 {
 	VALIDATE_CELL(cellPos);
+
 	/// TODO: Complete the implementation of the following function
+
+	VALIDATE_CELL(cellPos);
+	// TODO: Draw the workshop image in the cell
+	int Width = UI.CellWidth / 2;	// Scaled to half the cell's width
+	int Height = UI.CellHeight / 2; // Scaled to half the cell's height
+
+	// Use DrawImageInCell to place the gear in the specified cell
+	DrawImageInCell(cellPos, "images\\Menu_AddDangerZone.jpg", Width, Height);
 }
 
 void Output::DrawWaterPit(const CellPosition &cellPos) const
 {
 	VALIDATE_CELL(cellPos);
-	/// TODO: Complete the implementation of the following function
+	// TODO: Draw the workshop image in the cell
+	int Width = UI.CellWidth / 2;	// Scaled to half the cell's width
+	int Height = UI.CellHeight / 2; // Scaled to half the cell's height
+
+	// Use DrawImageInCell to place the gear in the specified cell
+	DrawImageInCell(cellPos, "images\\Menu_AddWaterPit.jpg", Width, Height);
 }
 
 Output::~Output()

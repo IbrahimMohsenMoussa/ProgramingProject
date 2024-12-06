@@ -2,7 +2,7 @@
 #include "Output.h"
 
 //This is a test code to test the Input and Output classes
-
+ 
 int main()
 {
 	int x, y;
@@ -14,7 +14,7 @@ int main()
 	//Starting the test
 	pOut->PrintMessage("This demo is to test classes of phase 1, Click anywhere to start the test");
 	pIn->GetPointClicked(x, y);	//Wait for any click
-
+	
 
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 1:	
@@ -37,7 +37,7 @@ int main()
 		savedCommands[i] = NO_COMMAND;
 	Command availableCommands[10];
 	for (int i = 0; i < 10; i++)
-		availableCommands[i] = MOVE_FORWARD_ONE_STEP;
+		availableCommands[i] = NO_COMMAND;
 	pOut->CreateCommandsBar(savedCommands, 5, availableCommands, 10);
 	pOut->PrintMessage("1.1.1- Finished Drawing the Command bar in the Game mode, Click to continue");
 
