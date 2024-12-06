@@ -220,8 +220,20 @@ CellPosition Input::GetCellClicked() const
 	{
 		if (y >= UI.ToolBarHeight && y <= (UI.height - UI.StatusBarHeight))
 		{
-			/// TODO: SetHCell and SetVCell of the object cellPost appropriately
+			/// DONE: SetHCell and SetVCell of the object cellPost appropriately
 			//       using the coordinates x, y and the appropriate variables of the UI_Info Object (UI)
+            int hCell = x / UI.CellWidth;
+            int vCell = (y - UI.ToolBarHeight) / UI.CellHeight;
+
+            
+            if (hCell >= 0 && hCell < NumHorizontalCells && vCell >= 0 && vCell < NumVerticalCells)
+            {
+                cellPos.SetHCell(hCell);
+                cellPos.SetVCell(vCell);
+            } 
+
+
+			
 		}
 	}
 
