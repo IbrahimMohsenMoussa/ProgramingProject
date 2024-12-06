@@ -4,6 +4,10 @@
 
 #include <iostream>
 //////////////////////////////////////////////////////////////////////////////////////////
+//Macro To Validate Cell Position 
+#define VALIDATE_CELL(CELL)           \
+	if (!CELL##.IsValidCell()) \
+	return
 
 Output::Output()
 {
@@ -206,9 +210,7 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 void Output::DrawImageInCell(const CellPosition &cellPos, string a_image, int width, int height) const
 {
 	/// DONE: Validate the cell position
-	if (!cellPos.IsValidCell())
-		return;
-
+	VALIDATE_CELL(cellPos);
 	int x = GetCellStartX(cellPos) + UI.CellWidth / 4;
 	int y = GetCellStartY(cellPos) + UI.CellHeight / 4;
 
@@ -490,8 +492,9 @@ void Output::PrintPlayersInfo(string info)
 void Output::DrawCell(const CellPosition &cellPos, color cellColor) const
 {
 	// Get the Cell Number (from 1 to NumVerticalCells*NumHorizontalCells) and the X & Y of its upper left corner
-	if (!cellPos.IsValidCell())
-		return;
+	// if (!cellPos.IsValidCell())
+	// 	return;
+	VALIDATE_CELL(cellPos);
 	int cellNum = cellPos.GetCellNum();
 	int cellStartX = GetCellStartX(cellPos);
 	int cellStartY = GetCellStartY(cellPos);
@@ -532,7 +535,8 @@ void Output::DrawCell(const CellPosition &cellPos, color cellColor) const
 void Output::DrawPlayer(const CellPosition &cellPos, int playerNum, color playerColor, Direction direction) const
 {
 	/// TODO: Validate the cell position and the playerNum, if not valid return
-	if (!cellPos.IsValidCell() || playerNum < 0 || playerNum > 1) 
+	VALIDATE_CELL(cellPos);
+	if ( playerNum < 0 || playerNum > 1)
 		return;
 
 	// Get the X & Y coordinates of the start point of the cell (its upper left corner)
@@ -567,7 +571,11 @@ void Output::DrawPlayer(const CellPosition &cellPos, int playerNum, color player
 
 void Output::DrawBelt(const CellPosition &fromCellPos, const CellPosition &toCellPos) const
 {
-	// TODO: Validate the fromCell and toCell (Must be Horizontal or Vertical, and we can't have the first cell as a starting cell for a belt)
+	// Validate the fromCell and toCell
+	if ((!fromCellPos.IsValidCell() || !toCellPos.IsValidCell()) ||									// check Cells Validity
+		((fromCellPos.GetCellNum() == toCellPos.GetCellNum()) || fromCellPos.GetCellNum() == 1) ||	// check that belt doesnt start and end in same cell
+		((fromCellPos.HCell() != toCellPos.HCell()) && (fromCellPos.VCell() != toCellPos.VCell()))) // check that the cells either have common H or V so that the belt is either vertical or horizontal
+		return;
 
 	// Get the start X and Y coordinates of the upper left corner of the fromCell and toCell
 	int fromCellStartX = GetCellStartX(fromCellPos);
@@ -575,29 +583,47 @@ void Output::DrawBelt(const CellPosition &fromCellPos, const CellPosition &toCel
 	int toCellStartX = GetCellStartX(toCellPos);
 	int toCellStartY = GetCellStartY(toCellPos);
 
+	// Calculate the belt's starting and ending positions
 	int beltFromCellX = fromCellStartX + (UI.CellWidth / 2) + UI.BeltXOffset;
-	int beltToCellX = toCellStartX + UI.BeltXOffset;
-
+	int beltToCellX = toCellStartX + (UI.CellWidth / 2) + UI.BeltXOffset;
 	int beltFromCellY = fromCellStartY + UI.BeltYOffset;
 	int beltToCellY = toCellStartY + UI.BeltYOffset;
 
-	// TODO: Draw the belt line and the triangle at the center of the line pointing to the direction of the belt
+	// Set pen color and width using the UI_Info object parameters
+	pWind->SetPen(UI.BeltColor, UI.BeltLineWidth);
 
-	// TODO: 1. Set pen color and width using the appropriate parameters of UI_Info object (UI)
-	//       2. Draw the line of the belt using the appropriate coordinates
+	// Draw the belt line
+	pWind->DrawLine(beltFromCellX, beltFromCellY, beltToCellX, beltToCellY);
 
-	// TODO: Draw the triangle at the center of the belt line pointing to the direction of the belt
+	// Calculate the center of the belt line
+	int l_centerX = (beltFromCellX + beltToCellX) / 2;
+	int l_centerY = (beltFromCellY + beltToCellY) / 2;
 
+	// Determine the belt's direction and draw the triangle pointing to the direction
+	Direction l_TriDirection;
+	if (fromCellPos.HCell() < toCellPos.HCell())
+		l_TriDirection = RIGHT;
+	else if (fromCellPos.HCell() > toCellPos.HCell())
+		l_TriDirection = LEFT;
+	else if (fromCellPos.VCell() < toCellPos.VCell())
+		l_TriDirection = DOWN;
+	else
+		l_TriDirection = UP;
+
+	// Triangle dimensions
 	int triangleWidth = UI.CellWidth / 4;
 	int triangleHeight = UI.CellHeight / 4;
+
+	// Draw the direction triangle at the center of the belt line
+	DrawTriangle(l_centerX, l_centerY, triangleHeight, triangleWidth, l_TriDirection, UI.BeltColor, FILLED, 1);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-
+#if 0
 void Output::DrawFlag(const CellPosition &cellPos) const
 {
 	// TODO: Validate the cell position
-
+    
 	// Get the X and Y coordinates of the start point of the cell (its upper left corner)
 	int cellStartX = GetCellStartX(cellPos);
 	int cellStartY = GetCellStartY(cellPos);
@@ -610,35 +636,87 @@ void Output::DrawFlag(const CellPosition &cellPos) const
 
 	// 		 2. Draw the flag (the triangle)
 }
+#endif
+
+void Output::DrawFlag(const CellPosition &cellPos) const
+{
+	/// DONE: Validate the cell position
+	VALIDATE_CELL(cellPos);
+
+	// Get the X and Y coordinates of the start point of the cell (its upper left corner)
+	int cellStartX = GetCellStartX(cellPos);
+	int cellStartY = GetCellStartY(cellPos);
+
+	// Calculate flag pole coordinates
+	int flagPoleStartX = cellStartX + UI.CellWidth / 2;	   // X coordinate of the flag pole
+	int flagPoleStartY = cellStartY + UI.CellHeight / 4;   // Y coordinate for top of the flag pole
+	int flagPoleEndY = flagPoleStartY + UI.FlagPoleHeight; // Y coordinate for bottom of the flag pole
+
+	// Draw the flag pole (vertical line)
+	pWind->SetPen(UI.FlagPoleColor, UI.FlagPoleWidth);
+	pWind->DrawLine(flagPoleStartX, flagPoleStartY, flagPoleStartX, flagPoleEndY);
+
+	// Calculate flag (triangle) vertices
+	int triangleBaseX = flagPoleStartX;
+	int triangleBaseY = flagPoleStartY;
+	int triangleTipX = triangleBaseX + UI.FlagWidth;		// Tip of the triangle to the right
+	int triangleTipY = triangleBaseY + (UI.FlagHeight / 2); // Center of the triangle vertically
+
+	// Vertices of the triangle
+	int x1 = triangleBaseX;					// Left vertex (attached to the pole)
+	int y1 = triangleBaseY;					// Top vertex
+	int x2 = triangleBaseX;					// Left vertex (attached to the pole)
+	int y2 = triangleBaseY + UI.FlagHeight; // Bottom vertex
+	int x3 = triangleTipX;					// Right vertex (tip of the flag)
+	int y3 = triangleTipY;					// Center of the flag
+
+	// Draw the flag (triangle)
+
+	pWind->SetPen(UI.FlagColor, 1);
+	pWind->SetBrush(UI.FlagColor);
+	pWind->DrawTriangle(x1, y1, x2, y2, x3, y3, FILLED);
+}
 
 void Output::DrawRotatingGear(const CellPosition &cellPos, bool clockwise) const
 {
-	// TODO: Validate the cell position
+    // Validate the cell position using the macro
+    VALIDATE_CELL(cellPos);
 
-	// TODO: Draw the rotating gear image in the cell based on the passed direction (clockwise or counter clockwise)
+    // Choose the appropriate image based on the gear's direction
+    string gearImage = clockwise ? "images\\Gear_Clockwise.jpg" : "images\\Gear_CounterClockwise.jpg";
+
+    // Define the width and height of the gear image relative to the cell size
+    int gearWidth = UI.CellWidth / 2;  // Scaled to half the cell's width
+    int gearHeight = UI.CellHeight / 2; // Scaled to half the cell's height
+
+    // Use DrawImageInCell to place the gear in the specified cell
+    DrawImageInCell(cellPos, gearImage, gearWidth, gearHeight);
 }
+
 
 void Output::DrawAntenna(const CellPosition &cellPos) const
 {
 	// TODO: Validate the cell position
-
+	VALIDATE_CELL(cellPos);
 	// TODO: Draw the antenna image in the cell
 }
 
 void Output::DrawWorkshop(const CellPosition &cellPos) const
 {
 	// TODO: Validate the cell position
-
+	VALIDATE_CELL(cellPos);
 	// TODO: Draw the workshop image in the cell
 }
 
 void Output::DrawDangerZone(const CellPosition &cellPos) const
 {
+	VALIDATE_CELL(cellPos);
 	/// TODO: Complete the implementation of the following function
 }
 
 void Output::DrawWaterPit(const CellPosition &cellPos) const
 {
+	VALIDATE_CELL(cellPos);
 	/// TODO: Complete the implementation of the following function
 }
 
