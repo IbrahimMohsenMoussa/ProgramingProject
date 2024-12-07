@@ -322,7 +322,7 @@ int main()
 		CellPosition position = pIn->GetCellClicked();
 
 		pOut->PrintMessage("You clicked at cell (" + to_string(position.VCell()) + ", " + to_string(position.HCell()) + ")");
-
+		pIn->GetPointClicked(x, y);
 	}
 	
 
@@ -336,12 +336,10 @@ int main()
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	string inputString = pIn->GetSrting(pOut);
-
-
-	pOut->ClearStatusBar();  // Clears the status bar
+	pIn->GetPointClicked(x, y);
+	pOut->PrintMessage("You Entered: " + inputString);
 
 	pIn->GetPointClicked(x, y);
-
 
 	pOut->PrintMessage("You Entered: ");
 

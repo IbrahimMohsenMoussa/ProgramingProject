@@ -216,7 +216,7 @@ ActionType Input::GetUserAction() const
 CellPosition Input::GetCellClicked() const
 {
 	CellPosition cellPos;
-	if (UI.InterfaceMode == MODE_DESIGN) {
+	if (UI.InterfaceMode == MODE_PLAY) {
 		int x, y;
 		pWind->WaitMouseClick(x, y); // Get the coordinates of the user click
 
