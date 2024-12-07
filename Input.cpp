@@ -49,11 +49,15 @@ int Input::GetInteger(Output *pO) const
 	//       using function GetString() defined above and function stoi()
 
 	string l_string = GetSrting(pO);
+	if (l_string.empty()) {
+		
+		return 0; 
+	}
 	return stoi(l_string);
 
 	// Note: stoi(s) converts string s into its equivalent integer (for example, "55" is converted to 55)
 
-	return 0; // this line should be changed with your implementation
+	 // this line should be changed with your implementation
 }
 
 //======================================================================================//
