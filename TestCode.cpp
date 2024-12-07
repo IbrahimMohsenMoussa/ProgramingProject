@@ -72,6 +72,7 @@ int main()
 
 	pOut->PrintMessage("1.1.4- Testing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
+	pOut->CreateDesignModeToolBar();
 
 	/// TODO: Draw the command bar with 5 saved commands and 6 available commands,
 	///  	but the first saved command will be MOVE_FORWARD_TWO_STEPS
