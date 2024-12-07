@@ -343,7 +343,7 @@ int main()
 	pIn->GetPointClicked(x, y);
 
 
-	pOut->PrintMessage("You Entered: ");
+	//pOut->PrintMessage("You Entered: ");
 
 
 	///TODO: Add code here to 
