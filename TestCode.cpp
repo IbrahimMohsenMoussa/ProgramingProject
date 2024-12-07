@@ -295,7 +295,9 @@ int main()
 	string inputString = pIn->GetSrting(pOut);
 
 	pOut->ClearStatusBar();
+
 	pIn->GetPointClicked(x, y);
+
 	pOut->PrintMessage("You have entered: " + inputString);
 
 	pIn->GetPointClicked(x, y);
@@ -318,22 +320,16 @@ int main()
 
 	for (int i = 0; i < 5; i++)
 	{
-		// 1. Ask user to enter an integer
 		pOut->PrintMessage("Enter an integer for vCell (" + to_string(i + 1) + "/5):");
 
-		// 2. Get point clicked (optional step, depends on UI flow)
 		pIn->GetPointClicked(x, y);
 
-		// 3. Read the integer using GetInteger()
-		int readInt = pIn->GetInteger(pOut);
+		int inputVInt = pIn->GetInteger(pOut);
 
-		// 4. Set the value of vCell for cellpos_1
-		cellpos_1.SetVCell(readInt);
+		cellpos_1.SetVCell(inputVInt);
 
-		// 5. Print the new value of vCell
 		pOut->PrintMessage("Now the vCell = " + to_string(cellpos_1.VCell()));
 
-		// 6. Wait for another point click (optional, depends on UI flow)
 		pIn->GetPointClicked(x, y);
 	}
 
@@ -342,52 +338,48 @@ int main()
 
 	for (int i = 0; i < 5; i++)
 	{
-		// 1. Ask user to enter an integer
 		pOut->PrintMessage("Enter an integer for hCell (" + to_string(i + 1) + "/5):");
 
-		// 2. Get point clicked (optional step, depends on UI flow)
 		pIn->GetPointClicked(x, y);
 
-		// 3. Read the integer using GetInteger()
-		int readInt = pIn->GetInteger(pOut);
+		int inputHInt = pIn->GetInteger(pOut);
 
-		// 4. Set the value of hCell for cellpos_1
-		cellpos_1.SetHCell(readInt);
+		cellpos_1.SetHCell(inputHInt);
 
-		// 5. Print the new value of hCell
 		pOut->PrintMessage("Now the hCell = " + to_string(cellpos_1.HCell()));
 
-		// 6. Wait for another point click (optional, depends on UI flow)
 		pIn->GetPointClicked(x, y);
 	}
 
 	pOut->PrintMessage("FINISHED - (Setters with Validation) Test, Click to continue");
-	pIn->GetPointClicked(x, y); // Wait for any click
+	pIn->GetPointClicked(x, y);
 
 	pOut->PrintMessage("4.2- (GetCellNumFromPosition) Test, Click to continue");
-	pIn->GetPointClicked(x, y); // Wait for any click
+	pIn->GetPointClicked(x, y); 
 
-	/// TODO:
-	// 1- Read from user two integers representing vCell and hCell
-	// 2- Creates a CellPosition object of them
-	// 3- Use the function GetCellNum() to get the corresponding Cell Number (it used function : GetCellNumFromPosition() inside it)
-	// 4- Print the Cell Number on the status bar
-	// 5- Repeat the above steps Five TIMES
 
 	int l_V;
 	int l_H;
 	for (int i = 0; i < 5; i++)
 	{
 
-		pOut->PrintMessage("enter V ");
+		pOut->PrintMessage("Enter an integer for vCell (" + to_string(i + 1) + "/5):");
+
 		l_V = pIn->GetInteger(pOut);
-		pIn->GetPointClicked(x, y); // Wait for any click
-		pOut->PrintMessage("enter H ");
-		pIn->GetPointClicked(x, y); // Wait for any click
+
+		pIn->GetPointClicked(x, y);
+
+		pOut->PrintMessage("Enter an integer for HCell (" + to_string(i + 1) + "/5):");
+
+		pIn->GetPointClicked(x, y);
+
 		l_H = pIn->GetInteger(pOut);
+
 		CellPosition cellPos_t4(l_V, l_H);
-		pOut->PrintMessage("Cell Number " + to_string(cellPos_t4.GetCellNum()));
-		pIn->GetPointClicked(x, y); // Wait for any click
+
+		pOut->PrintMessage("The corresponding Cell Number is " + to_string(cellPos_t4.GetCellNum()));
+
+		pIn->GetPointClicked(x, y); 
 	}
 	pOut->PrintMessage("FINISHED - (GetCellNumFromPosition) Test, Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
@@ -395,18 +387,10 @@ int main()
 	pOut->PrintMessage("4.3- (GetCellPositionFromNum) Test, Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
 
-	/// TODO:
-	// 1- Read from user one integer representing cellNum
-	// 2- Creates a CellPosition object of that integer using that constructor:
-	//		CellPosition (int cellNum);
-	//			--> it uses the function : GetCellPositionFromNum () inside it
-	// 4- Print the Cell vCell and hCell on the status bar
-	// 5- Repeat the above steps Five TIMES
-
 	for (int i = 0; i < 5; i++)
 	{
 
-		pOut->PrintMessage("Enter an integer for cellNum (" + to_string(i + 1) + "/5):");
+		pOut->PrintMessage("Enter an integer for the Cell Number (" + to_string(i + 1) + "/5):");
 
 		pIn->GetPointClicked(x, y);
 
@@ -414,11 +398,11 @@ int main()
 
 		CellPosition cellPos(cellNum);
 
-		int vCell = cellPos.VCell(); // Assuming GetVCell() retrieves vertical cell
-		int hCell = cellPos.HCell(); // Assuming GetHCell() retrieves horizontal cell
-		pOut->PrintMessage("The Cell has vCell = " + to_string(vCell) + ", hCell = " + to_string(hCell));
+		int vCell = cellPos.VCell(); 
+		int hCell = cellPos.HCell(); 
 
-		// Wait for user to click (optional)
+		pOut->PrintMessage("This Cell has vCell = " + to_string(vCell) + ", hCell = " + to_string(hCell));
+
 		pIn->GetPointClicked(x, y);
 	}
 
@@ -428,36 +412,30 @@ int main()
 	pOut->PrintMessage("4.4- (AddCellNum) Test, Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
 
-	/// TODO:
-	// 1- Read from user two integers representing cellNum and addedNum
-	// 2- Creates a CellPosition object of cellNum
-	// 3- Use the function AddCellNum() to add the addedNum to the cellNum
-	// 4- Print the vCell and hCell of the new Cell Position on the status bar
-	// 5- Repeat the above steps Four TIMES with each time a different direction
-
 	for (int i = 0; i < 4; i++)
 	{
-		// 1. Read two integers from the user: cellNum and addedNum
-		pOut->PrintMessage("Enter an integer for cellNum (" + to_string(i + 1) + "/4):");
-		pIn->GetPointClicked(x, y); // Wait for user to click (optional, depends on UI flow)
+
+		pOut->PrintMessage("Enter an integer for the Cell Number: (" + to_string(i + 1) + "/4):");
+
+		pIn->GetPointClicked(x, y);
+
 		int cellNum = pIn->GetInteger(pOut);
 
-		pOut->PrintMessage("Enter an integer for addedNum (" + to_string(i + 1) + "/4):");
-		pIn->GetPointClicked(x, y); // Wait for user to click again
+		pOut->PrintMessage("Enter an integer to be added to this Cell: (" + to_string(i + 1) + "/4):");
+
+		pIn->GetPointClicked(x, y);
+
 		int addedNum = pIn->GetInteger(pOut);
 
-		// 2. Create a CellPosition object using cellNum
 		CellPosition cellPos(cellNum);
 
-		// 3. Use the AddCellNum() function to add addedNum to the cellNum
-		cellPos.AddCellNum(addedNum,(Direction)(i));
+		cellPos.AddCellNum(addedNum,(Direction)(i)); //Testing for all four directions
 
-		// 4. Retrieve and print the vCell and hCell of the updated CellPosition
-		int vCell = cellPos.VCell(); // Assuming GetVCell() retrieves vertical cell
-		int hCell = cellPos.HCell(); // Assuming GetHCell() retrieves horizontal cell
+		int vCell = cellPos.VCell();
+		int hCell = cellPos.HCell();
+
 		pOut->PrintMessage("After adding, the Cell has vCell = " + to_string(vCell) + ", hCell = " + to_string(hCell));
 
-		// Wait for user to click before the next iteration
 		pIn->GetPointClicked(x, y);
 	}
 
@@ -471,65 +449,7 @@ int main()
 	pOut->PrintMessage("TEST5: Testing Input ability to detect User Action, click anywhere");
 
 	ActionType ActType;
-#if 0
-	///TODO:  
-	// You must add a case for EACH action (both Design mode and Game mode actions)
-	// Add cases for the missing actions below
-	do
-	{
-		ActType = pIn->GetUserAction();
 
-		int clickedCommandItemIndex; // if the action is SELECT_COMMAND, this will have the icon index
-		switch (ActType)
-		{
-		case SET_FLAG_CELL:
-			pOut->PrintMessage("Action: SET_FLAG_CELL , Click anywhere");
-			break;
-
-
-		case EXIT:
-			break;
-
-		case TO_PLAY_MODE:
-
-			pOut->PrintMessage("Action: TO_PLAY_MODE , Click anywhere");
-			pOut->CreatePlayModeToolBar();
-            
-			///TODO:  Call Function (PrintPlayersInfo) of Class Output with a string similar to 
-			//        the one given in the screenshot of project document 
-
-			break;
-
-
-			///TODO:  ADD Cases similarly for ALL the remaining actions of DESIGN Mode
-
-		case EXECUTE_COMMANDS:
-			pOut->PrintMessage("Action: EXECUTE_COMMAND , Click anywhere");
-			break;
-		case SELECT_COMMAND:
-			pOut->PrintMessage("Action: SELECT_COMMAND , Select a command");
-			clickedCommandItemIndex = pIn->GetSelectedCommandIndex();
-			pOut->PrintMessage("Action: SELECT_COMMAND " + to_string(clickedCommandItemIndex) + " , Click anywhere");
-			break;
-
-		case GRID_AREA:
-			pOut->PrintMessage("Action: GRID_AREA , Click anywhere");
-			break;
-
-		case STATUS:
-			pOut->PrintMessage("Action: STATUS , Click anywhere");
-			break;
-
-		case TO_DESIGN_MODE:
-			pOut->PrintMessage("Action: TO_DESIGN_MODE , Click anywhere");
-			pOut->CreateDesignModeToolBar();
-			break;
-
-			///TODO:  ADD Cases similarly for ALL the remaining actions of PLAY Mode
-
-		}
-	} while (ActType != EXIT);
-#endif
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 5:
 	//         Input Class - Part2: Check for the user action
@@ -571,7 +491,7 @@ int main()
 		case PASTE:
 			pOut->PrintMessage("Action: PASTE, Click anywhere");
 			break;
-		case DELETE:
+		case DEL:
 			pOut->PrintMessage("Action: DELETE, Click anywhere");
 			break;
 		case SAVE_GRID:
@@ -583,7 +503,7 @@ int main()
 		case TO_PLAY_MODE:
 			pOut->PrintMessage("Action: TO_PLAY_MODE, Switching to Play Mode");
 			pOut->CreatePlayModeToolBar();
-			pOut->PrintPlayersInfo("Player 1: Health=10, Position=Start | Player 2: Health=10, Position=Start");
+			pOut->PrintPlayersInfo("Player 1: HP=10, Position=Start | Player 2: HP=10, Position=Start");
 			break;
 
 		// Play Mode Actions
@@ -593,7 +513,7 @@ int main()
 		case SELECT_COMMAND:
 			pOut->PrintMessage("Action: SELECT_COMMAND, Select a command");
 			clickedCommandItemIndex = pIn->GetSelectedCommandIndex();
-			pOut->PrintMessage("Action: SELECT_COMMAND " + to_string(clickedCommandItemIndex) + ", Click anywhere");
+			pOut->PrintMessage("Action: SELECT_COMMAND " + to_string(clickedCommandItemIndex + 1) + ", Click anywhere");
 			break;
 		case USE_CONSUMABLE:
 			pOut->PrintMessage("Action: USE_CONSUMABLE, Click anywhere");
