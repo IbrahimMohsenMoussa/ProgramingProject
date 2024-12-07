@@ -362,7 +362,7 @@ int main()
 		pOut->PrintMessage("enter an integer");
 		int readint = pIn->GetInteger(pOut);
 		cellpos_1.SetVCell(readint);
-		pOut->PrintMessage("now the vcell = " + to_string(cellpos_1.VCell());
+		pOut->PrintMessage("now the vcell = " + to_string(cellpos_1.VCell()));
 		pIn->GetPointClicked(x, y);
 
 	}
@@ -371,7 +371,7 @@ int main()
 		pOut->PrintMessage("enter an integer");
 		int readint2 = pIn->GetInteger(pOut);
 		cellpos_1.SetHCell(readint2);
-		pOut->PrintMessage("now the hcell = " + to_string(cellpos_1.HCell());
+		pOut->PrintMessage("now the hcell = " + to_string(cellpos_1.HCell()));
 		pIn->GetPointClicked(x, y);
 
 	}
