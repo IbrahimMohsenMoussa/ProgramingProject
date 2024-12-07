@@ -75,7 +75,7 @@ int main()
 
 	pOut->PrintMessage("1.1.4- Testing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
-	pOut->CreateDesignModeToolBar();
+	
 
 	// TESTING 5 SAVED COMMANDS (move forward twice first card) AND 6 AVAILABLE COMMANDS (no command first card)
 
@@ -89,6 +89,8 @@ int main()
 	for (int i = 1; i < 6; i++)
 		availableCommands4[i] = MOVE_FORWARD_ONE_STEP;
 	pOut->CreateCommandsBar(savedCommands4, 5, availableCommands4, 6);
+
+	pOut->CreateDesignModeToolBar();
 
 	pOut->PrintMessage("1.1.4- Finished Testing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
@@ -291,6 +293,8 @@ int main()
 	/// =====================
 	pOut->PrintMessage("3.3- (GetSrting) Test, Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
+
+	pOut->PrintMessage("Please write a string, then press enter: ");
 
 	string inputString = pIn->GetSrting(pOut);
 
