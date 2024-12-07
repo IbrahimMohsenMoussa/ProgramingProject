@@ -336,14 +336,15 @@ int main()
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	string inputString = pIn->GetSrting(pOut);
+	pIn->GetPointClicked(x, y);
 
+	pOut->ClearStatusBar();
 
-	pOut->ClearStatusBar();  // Clears the status bar
-
+	pOut->PrintMessage("You Entered: " + inputString);
 	pIn->GetPointClicked(x, y);
 
 
-	//pOut->PrintMessage("You Entered: ");
+	
 
 
 	///TODO: Add code here to 
