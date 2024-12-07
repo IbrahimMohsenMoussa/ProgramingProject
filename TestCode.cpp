@@ -348,33 +348,50 @@ int main()
 
 	CellPosition cellpos_1(0, 0);
 
-	/// TODO:
-	// 1- Ask user to enter an integer and read it using GetInteger()
-	// 2- Call SetVCell() of cellpos_1 with that integer
-	// 3- Print GetVCell() of cellpos_1 as follows: "Now the vCell = 5" (assuming the entered integer is 5)
-	// 4- Call GetPointClicked()
-	// 5- Repeat the above steps FIVE TIMES
-	// 6- Repeat all the above steps to test SetHCell() function instead with the needed modifications
-
-	
 	for (int i = 0; i < 5; i++) {
+    // 1. Ask user to enter an integer
+    pOut->PrintMessage("Enter an integer for vCell (" + to_string(i + 1) + "/5):");
+    
+    // 2. Get point clicked (optional step, depends on UI flow)
+    pIn->GetPointClicked(x, y);
+    
+    // 3. Read the integer using GetInteger()
+    int readInt = pIn->GetInteger(pOut);
 
-		pOut->PrintMessage("enter an integer");
-		int readint = pIn->GetInteger(pOut);
-		cellpos_1.SetVCell(readint);
-		pOut->PrintMessage("now the vcell = " + to_string(cellpos_1.VCell()));
-		pIn->GetPointClicked(x, y);
+    // 4. Set the value of vCell for cellpos_1
+    cellpos_1.SetVCell(readInt);
 
-	}
-	for (int i = 0; i < 5; i++) {
+    // 5. Print the new value of vCell
+    pOut->PrintMessage("Now the vCell = " + to_string(cellpos_1.VCell()));
 
-		pOut->PrintMessage("enter an integer");
-		int readint2 = pIn->GetInteger(pOut);
-		cellpos_1.SetHCell(readint2);
-		pOut->PrintMessage("now the hcell = " + to_string(cellpos_1.HCell()));
-		pIn->GetPointClicked(x, y);
+    // 6. Wait for another point click (optional, depends on UI flow)
+    pIn->GetPointClicked(x, y);
+}
 
-	}
+pOut->PrintMessage("SetHCell test, click to continue");
+pIn->GetPointClicked(x, y); // Wait for user to click before starting the next test
+
+for (int i = 0; i < 5; i++) {
+    // 1. Ask user to enter an integer
+    pOut->PrintMessage("Enter an integer for hCell (" + to_string(i + 1) + "/5):");
+    
+    // 2. Get point clicked (optional step, depends on UI flow)
+    pIn->GetPointClicked(x, y);
+    
+    // 3. Read the integer using GetInteger()
+    int readInt = pIn->GetInteger(pOut);
+
+    // 4. Set the value of hCell for cellpos_1
+    cellpos_1.SetHCell(readInt);
+
+    // 5. Print the new value of hCell
+    pOut->PrintMessage("Now the hCell = " + to_string(cellpos_1.HCell()));
+
+    // 6. Wait for another point click (optional, depends on UI flow)
+    pIn->GetPointClicked(x, y);
+}
+
+
 	pOut->PrintMessage("FINISHED - (Setters with Validation) Test, Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
 
@@ -388,6 +405,21 @@ int main()
 	// 4- Print the Cell Number on the status bar
 	// 5- Repeat the above steps Five TIMES
 
+	int l_V;
+	int l_H;
+	for (int i = 0; i < 5; i++)
+	{
+
+		pOut->PrintMessage("enter V ");
+		l_V = pIn->GetInteger(pOut);
+		pIn->GetPointClicked(x, y); // Wait for any click
+		pOut->PrintMessage("enter H ");
+		pIn->GetPointClicked(x, y); // Wait for any click
+		l_H = pIn->GetInteger(pOut);
+		CellPosition cellPos_t4(l_V, l_H);
+		pOut->PrintMessage("Cell Number " + to_string(cellPos_t4.GetCellNum()));
+		pIn->GetPointClicked(x, y); // Wait for any click
+	}
 	pOut->PrintMessage("FINISHED - (GetCellNumFromPosition) Test, Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
 
@@ -488,8 +520,7 @@ int main()
 	//         Input Class - Part2: Check for the user action
 	///////////////////////////////////////////////////////////////////////////////////
 
-
-
+	pOut->CreateDesignModeToolBar();
 	do
 	{
 		ActType = pIn->GetUserAction();
