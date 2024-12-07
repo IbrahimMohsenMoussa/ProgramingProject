@@ -115,7 +115,6 @@ Input *Output::CreateInput() const
 
 int Output::GetCellStartX(const CellPosition &cellPos) const
 {
-	/// TODO: implement the following function as described in Output.h file
 
 	if (cellPos.IsValidCell())
 	{
@@ -131,7 +130,7 @@ int Output::GetCellStartX(const CellPosition &cellPos) const
 
 int Output::GetCellStartY(const CellPosition &cellPos) const
 {
-	/// TODO: implement the following function as described in Output.h file
+
 
 	if (cellPos.IsValidCell())
 	{
@@ -295,62 +294,7 @@ void Output::CreateDesignModeToolBar() const
 	}
 }
 
-// void Output::CreateDesignModeToolBar() const
-// {
-// 	UI.InterfaceMode = MODE_DESIGN;
 
-// 	ClearToolBar(); // in order not to draw above the icons of the other mode when you switch
-
-// 	// You can draw the tool bar icons in any way you want.
-// 	// Below is one possible way
-
-// 	// First prepare List of images for each menu item
-// 	// To control the order of these images in the menu,
-// 	// reoder them in UI_Info.h ==> enum DESIGN_MODE_ITEMS
-// 	// ** MAKE SURE THAT THE IMAGES ARE .JPG FILES **
-// 	string MenuItemImages[DESIGN_ITM_COUNT];
-// 	MenuItemImages[ITM_EXIT] = "images\\Menu_Exit.jpg";
-// 	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Menu_SwitchToGame.jpg";
-
-// 	/// TODO: Change the path of the images as needed
-// 	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Menu_Dice.jpg";
-
-// 	/// TODO: Prepare images for each menu item and add it to the list
-
-// 	// Draw menu item one image at a time
-// 	for (int i = 0; i < DESIGN_ITM_COUNT; i++)
-// 		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
-// }
-
-//////////////////////////////////////////////////////////////////////////////////////////
-#if 0
-void Output::CreatePlayModeToolBar() const
-{
-	UI.InterfaceMode = MODE_PLAY;
-
-	ClearToolBar(); // in order not to draw above the icons of the other mode when you switch
-
-	// You can draw the tool bar icons in any way you want.
-	// Below is one possible way
-
-	// First prepare List of images for each menu item
-	// To control the order of these images in the menu,
-	// reoder them in UI_Info.h ==> enum DESIGN_MODE_ITEMS
-	// ** MAKE SURE THAT THE IMAGES ARE .JPG FILES **
-	string MenuItemImages[PLAY_ITM_COUNT];
-	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\Menu_SwitchToGrid.jpg";
-
-	/// TODO: Change the path of the images as needed
-	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Menu_Dice.jpg";
-	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Menu_Dice.jpg";
-
-	/// TODO: Prepare images for each menu item and add it to the list
-
-	// Draw menu item one image at a time
-	for (int i = 0; i < PLAY_ITM_COUNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
-}
-#endif
 
 void Output::CreatePlayModeToolBar() const
 {
@@ -479,10 +423,8 @@ void Output::PrintMessage(string msg) const // Prints a message on status bar
 
 void Output::PrintPlayersInfo(string info)
 {
-	/// DONE: Clear what was written on the toolbar
 	CreatePlayModeToolBar();
-	// One of the correct ways to implement the above TODO is to call CreatePlayModeToolBar();
-	// to clear what was written in the player info (there are other ways too � You are free to use any)
+
 
 	// Set the pen and font before drawing the string on the window
 	pWind->SetPen(UI.PlayerInfoColor);
@@ -490,15 +432,12 @@ void Output::PrintPlayersInfo(string info)
 
 	int w = 0, h = 0;
 
-	/// DONE: Calculate the Width and Height of the string if drawn using the current font
-	//       (Use GetStringSize() window function) and set the "w" and "h" variables with its width and height
 	pWind->GetStringSize(w, h, info);
 	// Set the start X & Y coordinate of drawing the string
 	int x = UI.width - w - 20;			// space 20 before the right-side of the window
 										// ( - w ) because x is the coordinate of the start point of the string (upper left)
 	int y = (UI.ToolBarHeight - h) / 2; // in the Middle of the toolbar height
 
-	/// DONE: Draw the string "info" in the specified location (x, y)
 	pWind->DrawString(x, y, info);
 }
 
@@ -508,9 +447,7 @@ void Output::PrintPlayersInfo(string info)
 
 void Output::DrawCell(const CellPosition &cellPos, color cellColor) const
 {
-	// Get the Cell Number (from 1 to NumVerticalCells*NumHorizontalCells) and the X & Y of its upper left corner
-	// if (!cellPos.IsValidCell())
-	// 	return;
+
 	VALIDATE_CELL(cellPos);
 	int cellNum = cellPos.GetCellNum();
 	int cellStartX = GetCellStartX(cellPos);
@@ -531,9 +468,7 @@ void Output::DrawCell(const CellPosition &cellPos, color cellColor) const
 
 	int w = 0, h = 0;
 
-	/// TODO: Get the Width and Height of the Cell Number if written using the current font
-	//       (Use GetIntegerSize() window function) and set the "w" and "h" variables with its width and height
-	/// DONE:?????????????//
+
 	pWind->GetIntegerSize(w, h, cellNum);
 
 	// Calculate X & Y coordinate of the start point of writing the card number (upper left point of the cell num)
@@ -542,7 +477,6 @@ void Output::DrawCell(const CellPosition &cellPos, color cellColor) const
 	int y = cellStartY + (UI.CellHeight - h - 1); // space 1 from the end of the cell height
 												  // ( - w ) because y is for the start point of cell num (num's upper corner)
 
-	/// TODO: Draw the cell number in the x and y location
 
 	pWind->DrawInteger(x, y, cellNum);
 }
@@ -551,7 +485,6 @@ void Output::DrawCell(const CellPosition &cellPos, color cellColor) const
 
 void Output::DrawPlayer(const CellPosition &cellPos, int playerNum, color playerColor, Direction direction) const
 {
-	/// TODO: Validate the cell position and the playerNum, if not valid return
 	VALIDATE_CELL(cellPos);
 	if (playerNum < 0 || playerNum > 1)
 		return;
@@ -580,7 +513,6 @@ void Output::DrawPlayer(const CellPosition &cellPos, int playerNum, color player
 													  // AFTER the Belt start vertical line (assuming there is a belt)
 													  // for not overlapping with belts
 
-	/// TODO: Draw the player triangle in center(x,y) and filled with the playerColor passed to the function
 	DrawTriangle(x, y, radius * 2, radius * 2, direction, playerColor, FILLED, 2);
 }
 
@@ -631,33 +563,14 @@ void Output::DrawBelt(const CellPosition &fromCellPos, const CellPosition &toCel
 	int triangleWidth = UI.CellWidth / 4;
 	int triangleHeight = UI.CellHeight / 4;
 
-	// Draw the direction triangle at the center of the belt line
 	DrawTriangle(l_centerX, l_centerY, triangleHeight, triangleWidth, l_TriDirection, UI.BeltColor,FILLED, 1);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-#if 0
-void Output::DrawFlag(const CellPosition &cellPos) const
-{
-	// TODO: Validate the cell position
-    
-	// Get the X and Y coordinates of the start point of the cell (its upper left corner)
-	int cellStartX = GetCellStartX(cellPos);
-	int cellStartY = GetCellStartY(cellPos);
 
-	// TODO: Draw the flag as a line with a triangle connected to it directed to right
-
-	// TODO: 1. Draw the flag pole (the line)
-	int flagPoleStartX = cellStartX + UI.CellWidth / 2;
-	int flagPoleStartY = cellStartY + UI.CellHeight / 4;
-
-	// 		 2. Draw the flag (the triangle)
-}
-#endif
 
 void Output::DrawFlag(const CellPosition &cellPos) const
 {
-	/// DONE: Validate the cell position
 	VALIDATE_CELL(cellPos);
     VALIDATE_CELL_NUM(cellPos);
 	// Get the X and Y coordinates of the start point of the cell (its upper left corner)
@@ -715,12 +628,11 @@ void Output::DrawAntenna(const CellPosition &cellPos) const
 	/// TODO: Validate the cell position
 	VALIDATE_CELL(cellPos);
 	VALIDATE_CELL_NUM(cellPos);
-	int Width = UI.CellWidth / 2;	// Scaled to half the cell's width
-	int Height = UI.CellHeight / 2; // Scaled to half the cell's height
+	int antennaWidth = UI.CellWidth / 2;	// Scaled to half the cell's width
+	int antennaHeight = UI.CellHeight / 2; // Scaled to half the cell's height
 
-	// Use DrawImageInCell to place the gear in the specified cell
-	DrawImageInCell(cellPos, "images\\Menu_AddAntenna.jpg", Width, Height);
-	/// TODO: Draw the antenna image in the cell
+	// Use DrawImageInCell to place the antenna in the specified cell
+	DrawImageInCell(cellPos, "images\\Menu_AddAntenna.jpg", antennaWidth, antennaHeight);
 }
 
 void Output::DrawWorkshop(const CellPosition &cellPos) const
@@ -729,11 +641,11 @@ void Output::DrawWorkshop(const CellPosition &cellPos) const
 	VALIDATE_CELL(cellPos);
 	VALIDATE_CELL_NUM(cellPos);
 	// TODO: Draw the workshop image in the cell
-	int Width = UI.CellWidth / 2;	// Scaled to half the cell's width
-	int Height = UI.CellHeight / 2; // Scaled to half the cell's height
+	int workshopWidth = UI.CellWidth / 2;	// Scaled to half the cell's width
+	int workshopHeight = UI.CellHeight / 2; // Scaled to half the cell's height
 
-	// Use DrawImageInCell to place the gear in the specified cell
-	DrawImageInCell(cellPos, "images\\Workshop.jpg", Width, Height);
+	// Use DrawImageInCell to place the workshop in the specified cell
+	DrawImageInCell(cellPos, "images\\Workshop.jpg", workshopWidth, workshopHeight);
 }
 
 void Output::DrawDangerZone(const CellPosition &cellPos) const
