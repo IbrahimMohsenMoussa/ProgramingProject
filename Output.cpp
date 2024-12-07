@@ -9,6 +9,10 @@
 	if (!CELL##.IsValidCell()) \
 	return
 
+#define VALIDATE_CELL_NUM(CELL)    \
+	if (!CELL##.GetCellNum()) \
+	return
+
 Output::Output()
 {
 	// Initialize user interface parameters
@@ -655,7 +659,7 @@ void Output::DrawFlag(const CellPosition &cellPos) const
 {
 	/// DONE: Validate the cell position
 	VALIDATE_CELL(cellPos);
-
+    VALIDATE_CELL_NUM(cellPos);
 	// Get the X and Y coordinates of the start point of the cell (its upper left corner)
 	int cellStartX = GetCellStartX(cellPos);
 	int cellStartY = GetCellStartY(cellPos);
@@ -694,7 +698,7 @@ void Output::DrawRotatingGear(const CellPosition &cellPos, bool clockwise) const
 {
 	// Validate the cell position using the macro
 	VALIDATE_CELL(cellPos);
-
+    VALIDATE_CELL_NUM(cellPos);
 	// Choose the appropriate image based on the gear's direction
 	string gearImage = clockwise ? "images\\Gear_Clockwise.jpg" : "images\\Gear_CounterClockwise.jpg";
 
@@ -710,6 +714,7 @@ void Output::DrawAntenna(const CellPosition &cellPos) const
 {
 	/// TODO: Validate the cell position
 	VALIDATE_CELL(cellPos);
+	VALIDATE_CELL_NUM(cellPos);
 	int Width = UI.CellWidth / 2;	// Scaled to half the cell's width
 	int Height = UI.CellHeight / 2; // Scaled to half the cell's height
 
@@ -722,6 +727,7 @@ void Output::DrawWorkshop(const CellPosition &cellPos) const
 {
 	// TODO: Validate the cell position
 	VALIDATE_CELL(cellPos);
+	VALIDATE_CELL_NUM(cellPos);
 	// TODO: Draw the workshop image in the cell
 	int Width = UI.CellWidth / 2;	// Scaled to half the cell's width
 	int Height = UI.CellHeight / 2; // Scaled to half the cell's height
@@ -733,34 +739,15 @@ void Output::DrawWorkshop(const CellPosition &cellPos) const
 void Output::DrawDangerZone(const CellPosition &cellPos) const
 {
 	VALIDATE_CELL(cellPos);
-	if (cellPos.GetCellNum() == 1) {
-		return;
-	}
-
-	/// TODO: Complete the implementation of the following function
-
-	VALIDATE_CELL(cellPos);
-	// TODO: Draw the workshop image in the cell
-	int Width = UI.CellWidth / 2;	// Scaled to half the cell's width
-	int Height = UI.CellHeight / 2; // Scaled to half the cell's height
-
-	// Use DrawImageInCell to place the gear in the specified cell
-	DrawImageInCell(cellPos, "images\\Menu_AddDangerZone.jpg", Width, Height);
+	VALIDATE_CELL_NUM(cellPos);
+	DrawCell(cellPos,RED);
 }
 
 void Output::DrawWaterPit(const CellPosition &cellPos) const
 {
 	VALIDATE_CELL(cellPos);
-	if (cellPos.GetCellNum() == 1) {
-		return;
-	}
-
-	// TODO: Draw the workshop image in the cell
-	int Width = UI.CellWidth / 2;	// Scaled to half the cell's width
-	int Height = UI.CellHeight / 2; // Scaled to half the cell's height
-
-	// Use DrawImageInCell to place the gear in the specified cell
-	DrawImageInCell(cellPos, "images\\Menu_AddWaterPit.jpg", Width, Height);
+	VALIDATE_CELL_NUM(cellPos);
+	DrawCell(cellPos,BLUE);
 }
 
 Output::~Output()
