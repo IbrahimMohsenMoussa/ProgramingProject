@@ -10,7 +10,7 @@
 	return
 
 #define VALIDATE_CELL_NUM(CELL)    \
-	if (!CELL##.GetCellNum()) \
+	if (CELL##.GetCellNum()==1) \
 	return
 
 Output::Output()
