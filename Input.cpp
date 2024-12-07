@@ -45,9 +45,6 @@ string Input::GetSrting(Output *pO) const
 int Input::GetInteger(Output *pO) const
 {
 
-	/// DONE: implement the GetInteger function as described in Input.h file
-	//       using function GetString() defined above and function stoi()
-
 	string l_string = GetSrting(pO);
 	if (l_string.empty()) {
 		
@@ -55,9 +52,7 @@ int Input::GetInteger(Output *pO) const
 	}
 	return stoi(l_string);
 
-	// Note: stoi(s) converts string s into its equivalent integer (for example, "55" is converted to 55)
 
-	 // this line should be changed with your implementation
 }
 
 //======================================================================================//
