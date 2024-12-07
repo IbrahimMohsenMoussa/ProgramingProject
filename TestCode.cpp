@@ -1,6 +1,6 @@
 #include "Input.h"
 #include "Output.h"
-
+//fuck ibrahim
 //This is a test code to test the Input and Output classes
  
 int main()
