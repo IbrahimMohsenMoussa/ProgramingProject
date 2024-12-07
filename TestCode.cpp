@@ -298,9 +298,11 @@ int main()
 	// 3- Call GetPointClicked() function
 
 	int input = pIn->GetInteger(pOut);
-	pOut->PrintMessage("You have entered " + to_string(input) );
-	pIn->GetPointClicked(x, y);
 
+
+	pOut->PrintMessage("You have entered " + to_string(input) );
+
+	pIn->GetPointClicked(x, y);
 
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -315,16 +317,12 @@ int main()
 	// 1- Call function GetCellClicked
 	// 2- Print on the status bar the vCell and hCell of the clicked cell
 	// 3- Repeat Step 1 and 2 five times
+	
 	for (int i = 0; i < 5; i++) {
-		// 1- Call function GetCellClicked and get the CellPosition
 		CellPosition position = pIn->GetCellClicked();
 
-		// 2- Print on the status bar the vCell and hCell of the clicked cell
-		std::string cellMessage = "You clicked at cell (" + std::to_string(position.VCell()) + ", " + std::to_string(position.HCell()) + ")";
-		pOut->PrintMessage(cellMessage);
+		pOut->PrintMessage("You clicked at cell (" + to_string(position.VCell()) + ", " + to_string(position.HCell()) + ")");
 
-		// 3- Wait for any click before repeating
-		pIn->GetPointClicked(x, y);	// Wait for any click
 	}
 	
 
@@ -337,13 +335,15 @@ int main()
 	pOut->PrintMessage("3.3- (GetSrting) Test, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
-	std::string inputString = pIn->GetSrting(pOut);
+	string inputString = pIn->GetSrting(pOut);
 
-	// 2- After reading the string, clear the status bar
+
 	pOut->ClearStatusBar();  // Clears the status bar
 
-	// 3- Print on the status bar "You Entered" then print the string
-	pOut->PrintMessage("You Entered: " + inputString);
+	pIn->GetPointClicked(x, y);
+
+
+	pOut->PrintMessage("You Entered: ");
 
 
 	///TODO: Add code here to 

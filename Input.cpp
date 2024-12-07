@@ -212,64 +212,28 @@ ActionType Input::GetUserAction() const
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-#if 0
+
 CellPosition Input::GetCellClicked() const
 {
-	int x, y;
-	pWind->WaitMouseClick(x, y); // Get the coordinates of the user click
-
 	CellPosition cellPos;
+	if (UI.InterfaceMode == MODE_DESIGN) {
+		int x, y;
+		pWind->WaitMouseClick(x, y); // Get the coordinates of the user click
 
-	if (UI.InterfaceMode == MODE_DESIGN)
-	{
+		// Default CellPosition with invalid values (-1, -1)
+
 		if (y >= UI.ToolBarHeight && y <= (UI.height - UI.StatusBarHeight))
 		{
-			/// DONE: SetHCell and SetVCell of the object cellPost appropriately
-			//       using the coordinates x, y and the appropriate variables of the UI_Info Object (UI)
-            int hCell = x / UI.CellWidth;
-            int vCell = (y - UI.ToolBarHeight) / UI.CellHeight;
+			int hCell = x / UI.CellWidth;
+			int vCell = (y - UI.ToolBarHeight) / UI.CellHeight;
 
-            
-            if (hCell >= 0 && hCell < NumHorizontalCells && vCell >= 0 && vCell < NumVerticalCells)
-            {
-                cellPos.SetHCell(hCell);
-                cellPos.SetVCell(vCell);
-            } 
-
-
-			
+			if (hCell >= 0 && hCell < NumHorizontalCells && vCell >= 0 && vCell < NumVerticalCells)
+			{
+				cellPos.SetHCell(hCell);
+				cellPos.SetVCell(vCell);
+			}
 		}
 	}
-
-	return cellPos;
-}
-
-#endif
-CellPosition Input::GetCellClicked() const
-{
-	CellPosition cellPos;
-	if (UI.InterfaceMode == MODE_PLAY)
-		return cellPos;
-	int x, y;
-	pWind->WaitMouseClick(x, y); // Get the coordinates of the user click
-
-	// Default CellPosition with invalid values (-1, -1)
-
-	// Check if the click is within the grid area
-	if (y >= UI.ToolBarHeight && y <= (UI.height - UI.StatusBarHeight))
-	{
-		// Calculate horizontal (hCell) and vertical (vCell) indices
-		int hCell = x / UI.CellWidth;
-		int vCell = (y - UI.ToolBarHeight) / UI.CellHeight;
-
-		// Validate the calculated cell indices
-		if (hCell >= 0 && hCell < NumHorizontalCells && vCell >= 0 && vCell < NumVerticalCells)
-		{
-			cellPos.SetHCell(hCell);
-			cellPos.SetVCell(vCell);
-		}
-	}
-
 	return cellPos; // If the click is outside the grid, returns invalid (-1, -1)
 }
 
