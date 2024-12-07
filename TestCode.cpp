@@ -381,6 +381,25 @@ int main()
 	// 5- Repeat the above steps FIVE TIMES
 	// 6- Repeat all the above steps to test SetHCell() function instead with the needed modifications
 
+	
+	for (int i = 0; i < 5; i++) {
+
+		pOut->PrintMessage("enter an integer");
+		int readint = pIn->GetInteger(pOut);
+		cellpos_1.SetVCell(readint);
+		pOut->PrintMessage("now the vcell = " + to_string(cellpos_1.VCell());
+		pIn->GetPointClicked(x, y);
+
+	}
+	for (int i = 0; i < 5; i++) {
+
+		pOut->PrintMessage("enter an integer");
+		int readint2 = pIn->GetInteger(pOut);
+		cellpos_1.SetHCell(readint2);
+		pOut->PrintMessage("now the hcell = " + to_string(cellpos_1.HCell());
+		pIn->GetPointClicked(x, y);
+
+	}
 	pOut->PrintMessage("FINISHED - (Setters with Validation) Test, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
