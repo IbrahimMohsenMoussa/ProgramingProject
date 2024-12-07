@@ -469,7 +469,7 @@ int main()
 	//         Input Class - Part2: Check for the user action
 	///////////////////////////////////////////////////////////////////////////////////
 
-	ActionType ActType;
+
 
 	do
 	{
