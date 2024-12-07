@@ -111,7 +111,8 @@ int main()
 	CellPosition cell_53(53); // cell num 53
 	CellPosition cell_1(1);	  // cell num 1
 
-	// TODO: Draw Water Pits in cell_10 and cell_53 and cell_1 (Invalid)
+	// Testing Water Pits in cell_10 and cell_53 and cell_1 (Invalid)
+
 	pOut->DrawWaterPit(cell_10);
 	pOut->DrawWaterPit(cell_53);
 	pOut->DrawWaterPit(cell_1);
@@ -127,7 +128,7 @@ int main()
 	CellPosition cell_20(20); // cell num 20
 	CellPosition cell_60(60); // cell num 60
 
-	// TODO: Draw DangerZone in cell_20, [cell_60 and cell_1] (Invalid)
+	// Testing DangerZone in cell_20, [cell_60 and cell_1] (Invalid)
 
 	pOut->DrawDangerZone(cell_20);
 	pOut->DrawDangerZone(cell_60);
@@ -146,31 +147,14 @@ int main()
 	CellPosition player_15(2, 18);
 	CellPosition player_99(2, 5);
 
-	/// TODO: Call Function DrawPlayer of Class Ouput Multiple Times
-	///        to draw the following players:
-	///        playerNum (0) with color (PlayerColors[0] defined in UI object)
-	///			in cell position (player_1 declared above) pointing to right direction
-	///        playerNum (1) with color (PlayerColors[1] defined in UI object)
-	///			in cell position (player_1 declared above) pointing to the up direction
-	///       playerNum (2) with color (PlayerColors[2] defined in UI object)
-	///			in cell position (player_1 declared above) pointing to the down direction --> Invalid
-	///       playerNum (3) with color (PlayerColors[3] defined in UI object)
-	///			in cell position (player_1 declared above) pointing to the left direction --> Invalid
-	///       playerNum (0) with color (PlayerColors[0] defined in UI object)
-	///			in cell position (player_15 declared above) pointing to the left direction --> Invalid
-	///       playerNum (1) with color (PlayerColors[1] defined in UI object)
-	///			in cell position (player_99 declared above) pointing up
-	///       playerNum (5) with color (PlayerColors[1] defined in UI object)
-	///			in cell position (player_99 declared above) pointing down--> Invalid
-	///       playerNum (-1) with color (PlayerColors[1] defined in UI object)
-	///			in cell position (player_99 declared above) pointing left--> Invalid
+	/// Testing DrawPlayer function with 3 valid calls and 4 invalid calls
 
-	pOut->DrawPlayer(player_1, 0, UI.PlayerColors[0], RIGHT);
-	pOut->DrawPlayer(player_1, 1, UI.PlayerColors[1], UP);
-	pOut->DrawPlayer(player_1, 2, UI.PlayerColors[2], DOWN);
+	pOut->DrawPlayer(player_1, 0, UI.PlayerColors[0], RIGHT);			//VALID
+	pOut->DrawPlayer(player_1, 1, UI.PlayerColors[1], UP);				//VALID
+	pOut->DrawPlayer(player_1, 2, UI.PlayerColors[2], DOWN);			
 	pOut->DrawPlayer(player_1, 3, UI.PlayerColors[3], LEFT);
 	pOut->DrawPlayer(player_15, 0, UI.PlayerColors[0], LEFT);
-	pOut->DrawPlayer(player_99, 1, UI.PlayerColors[1], UP);
+	pOut->DrawPlayer(player_99, 1, UI.PlayerColors[1], UP);				//VALID
 	pOut->DrawPlayer(player_99, 5, UI.PlayerColors[1], DOWN);
 	pOut->DrawPlayer(player_99, -1, UI.PlayerColors[1], LEFT);
 
@@ -187,7 +171,7 @@ int main()
 	CellPosition flag_60(60);
 	CellPosition flag_99(99);
 
-	// TODO: Draw Flags in cell positions (flag_1, flag_60, flag_99)
+	// Testing Flags in cell positions (flag_1, flag_60, flag_99)
 	pOut->DrawFlag(flag_1);
 	pOut->DrawFlag(flag_60);
 	pOut->DrawFlag(flag_99);
@@ -209,17 +193,11 @@ int main()
 	CellPosition belt_end_3(32);
 	CellPosition belt_end_4(33);
 
-	// TODO: Draw 5 belts
-	//		1- from belt_start_1 to belt_end_1
-	//		2- from belt_start_2 to belt_end_2
-	//		3- from belt_start_3 to belt_end_3
-	//		4- from belt_start_3 to belt_end_4 --> Invalid
-	//		5- from belt_end_1 to belt_end_2 --> Invalid
-	// 		6- from belt_end_3 to belt_end_4 --> Invalid
+	//	Testing drawing Belts with 3 valid calls and 3 invalid calls
 
-	pOut->DrawBelt(belt_start_1, belt_end_1);
-	pOut->DrawBelt(belt_start_2, belt_end_2);
-	pOut->DrawBelt(belt_start_3, belt_end_3);
+	pOut->DrawBelt(belt_start_1, belt_end_1);		//VALID
+	pOut->DrawBelt(belt_start_2, belt_end_2);		//VALID
+	pOut->DrawBelt(belt_start_3, belt_end_3);		//VALID
 	pOut->DrawBelt(belt_start_3, belt_end_4);
 	pOut->DrawBelt(belt_start_1, belt_end_2);
 	pOut->DrawBelt(belt_start_3, belt_end_4);
@@ -236,10 +214,11 @@ int main()
 	CellPosition cell_13(13);
 	CellPosition cell_19(19);
 
+	//	Testing drawing gears in clockwise and anticlockwise position
+
+
 	pOut->DrawRotatingGear(cell_13, 0);
-	pOut->DrawRotatingGear(cell_19, 1); // TODO: Draw Rotating Gears in cell positions (cell_13, cell_19)
-										//        1. At cell_13 with rotation left (anticlockwise)
-										//        2. At cell_19 with rotation right (clockwise)
+	pOut->DrawRotatingGear(cell_19, 1); 
 
 	pOut->PrintMessage("FINISHED - Drawing (Rotating Gears) Test,  Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
@@ -251,7 +230,7 @@ int main()
 
 	CellPosition cell_25(25);
 
-	pOut->DrawAntenna(cell_25); // TODO: Draw Antenna in cell position (cell_25)
+	pOut->DrawAntenna(cell_25); // Testing Antenna in cell position (cell_25)
 
 	pOut->PrintMessage("FINISHED - Drawing (Antenna) Test,  Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
@@ -264,7 +243,7 @@ int main()
 
 	CellPosition cell_30(30);
 
-	pOut->DrawWorkshop(cell_30); // TODO: Draw Workshop in cell position (cell_30)
+	pOut->DrawWorkshop(cell_30); // Testing Workshop in cell position (cell_30)
 
 	pOut->PrintMessage("FINISHED - Drawing (Workshop) Test,  Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
