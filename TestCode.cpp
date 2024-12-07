@@ -261,15 +261,10 @@ int main()
 	pOut->PrintMessage("3.1- (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
 
-	/// TODO: Add code here to
-	// 1- Call GetInteger Function and receive its returned integer
-	// 2- Print it in the status bar in this format:   You Entered: 116
-	//    (assuming the entered number is 116)
-	// 3- Call GetPointClicked() function
-
+	pOut->PrintMessage("Please enter an Integer, then press enter: ");
 	int input = pIn->GetInteger(pOut);
 
-	pOut->PrintMessage("You have entered " + to_string(input));
+	pOut->PrintMessage("You have entered: " + to_string(input));
 
 	pIn->GetPointClicked(x, y);
 
@@ -281,16 +276,12 @@ int main()
 	pOut->PrintMessage("3.2- (GetCellClicked) Test, Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
 
-	/// TODO: Add code here to
-	// 1- Call function GetCellClicked
-	// 2- Print on the status bar the vCell and hCell of the clicked cell
-	// 3- Repeat Step 1 and 2 five times
 
 	for (int i = 0; i < 5; i++)
 	{
 		CellPosition position = pIn->GetCellClicked();
-
-		pOut->PrintMessage("You clicked at cell (" + to_string(position.VCell()) + ", " + to_string(position.HCell()) + ")");
+	
+		pOut->PrintMessage("You clicked the cell (" + to_string(position.VCell()) + ", " + to_string(position.HCell()) + ")");
 	}
 
 	pOut->PrintMessage("FINISHED - (GetCellClicked) Test, Click to continue");
@@ -302,18 +293,12 @@ int main()
 	pIn->GetPointClicked(x, y); // Wait for any click
 
 	string inputString = pIn->GetSrting(pOut);
-	pIn->GetPointClicked(x, y);
 
 	pOut->ClearStatusBar();
-
-	pOut->PrintMessage("You Entered: " + inputString);
 	pIn->GetPointClicked(x, y);
+	pOut->PrintMessage("You have entered: " + inputString);
 
-	/// TODO: Add code here to
-	// 1- Read a string from the user on the status bar
-	// 2- After reading the string clear the status bar
-	// 3- print on the status bar "You Entered" then print the string
-	// NOTE: GetString() is already implemented. It is just required from you to call it
+	pIn->GetPointClicked(x, y);
 
 	pOut->PrintMessage("FINISHED - (GetSrting) Test, Click to continue");
 	pIn->GetPointClicked(x, y); // Wait for any click
